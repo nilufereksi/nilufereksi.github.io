@@ -1,0 +1,19 @@
+[
+  {
+    "id": "sha256-audio-news",
+    "title": "SHA256-Based Audio and News Verification System",
+    "tagline": "Verifying Digital Media Authenticity with Hash-Based Security",
+    "short": "Cryptographic verification app for audio recordings and news texts using SHA-256, RSA and AES.",
+    "description": "This project is a cryptographic verification application designed to ensure the authenticity and integrity of digital content, focusing on protecting audio recordings and news texts against manipulation.\n\nBuilt on Python, the system uses the SHA256 algorithm to generate unique hashes. It includes audio and news modules with enroll/verify workflows. For secure transmission it uses an Alice–Bob model with RSA for key exchange and AES for symmetric encryption. A GUI (Tkinter / CustomTkinter) offers file selection and color-coded results with detailed logs. Typical uses: newsrooms, forensics, and media verification.",
+    "tech": ["Python 3.13","Tkinter","CustomTkinter","PyCryptodome (RSA, AES)","hashlib (SHA-256)","PyAudio","wave","socket (TCP/IP)"],
+    "repo": "https://github.com/nilufereksi/SHA256-ile-sifreleme-ve-dogrulama",
+    "demo": "",
+    "images": [
+      "assets/images/sha256-1.png",
+      "assets/images/sha256-2.png",
+      "assets/images/sha256-3.png",
+      "assets/images/sha256-4.png"
+    ],
+    "featured": true
+  }
+]

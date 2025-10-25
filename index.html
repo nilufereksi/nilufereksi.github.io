@@ -38,20 +38,18 @@
       </ul>
     </section>
 
+    <!-- Projects: interactive grid rendered from assets/data/projects.json -->
     <section id="projects" class="card">
       <h3>Projects</h3>
-      <div class="grid">
-        <article class="project">
-          <h4>Project One</h4>
-          <p>Short description. Tech used. Link to repo or demo.</p>
-          <p><a href="#" target="_blank" rel="noopener">View repo</a> · <a href="#" target="_blank" rel="noopener">Live demo</a></p>
-        </article>
+      <div class="project-filters" aria-hidden="false">
+        <button data-filter="all" class="filter active">All</button>
+        <button data-filter="Python" class="filter">Python</button>
+        <button data-filter="Tkinter" class="filter">Tkinter</button>
+        <button data-filter="Cryptography" class="filter">Cryptography</button>
+      </div>
 
-        <article class="project">
-          <h4>Project Two</h4>
-          <p>Short description. Tech used. Link to repo or demo.</p>
-          <p><a href="#" target="_blank" rel="noopener">View repo</a></p>
-        </article>
+      <div id="projects-grid" class="grid" aria-live="polite">
+        <!-- Project cards will be rendered here by assets/js/main.js -->
       </div>
     </section>
 
@@ -62,12 +60,34 @@
     </section>
   </main>
 
+  <!-- Project modal -->
+  <div id="project-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-content" role="document">
+      <button class="modal-close" aria-label="Close" data-close>×</button>
+      <h2 id="modal-title"></h2>
+      <p id="modal-tagline" class="muted"></p>
+      <div class="modal-carousel">
+        <button class="carousel-prev" aria-label="Previous image">‹</button>
+        <div class="carousel-track"></div>
+        <button class="carousel-next" aria-label="Next image">›</button>
+      </div>
+      <div id="modal-desc"></div>
+      <p class="modal-tech" id="modal-tech"></p>
+      <p class="modal-links">
+        <a id="modal-repo" class="btn" target="_blank" rel="noopener">View repo</a>
+        <a id="modal-demo" class="btn" target="_blank" rel="noopener">Live demo</a>
+      </p>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="container">
       <small>© <span id="year"></span> Nilüfer Ekşinar — Built with GitHub Pages</small>
     </div>
   </footer>
 
+  <script src="assets/js/main.js" defer></script>
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>

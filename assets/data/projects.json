@@ -9,10 +9,10 @@
     "repo": "https://github.com/nilufereksi/SHA256-ile-sifreleme-ve-dogrulama",
     "demo": "",
     "images": [
-      "assets/images/sha256-1.png",
-      "assets/images/sha256-2.png",
-      "assets/images/sha256-3.png",
-      "assets/images/sha256-4.png"
+      "assets/images/gui başlangıç ekranı.png",
+      "assets/images/haber doğrulama ekranı.png",
+      "assets/images/server bşlat-durdur2.png",
+      "assets/images/ses doğrulama ekranı.png"
     ],
     "featured": true
   }

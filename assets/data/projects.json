@@ -5,7 +5,16 @@
     "tagline": "Verifying Digital Media Authenticity with Hash-Based Security",
     "short": "Cryptographic verification app for audio recordings and news texts using SHA-256, RSA and AES.",
     "description": "This project is a cryptographic verification application designed to ensure the authenticity and integrity of digital content, focusing on protecting audio recordings and news texts against manipulation.\n\nBuilt on Python, the system uses the SHA256 algorithm to generate unique hashes. It includes audio and news modules with enroll/verify workflows. For secure transmission it uses an Alice–Bob model with RSA for key exchange and AES for symmetric encryption. A GUI (Tkinter / CustomTkinter) offers file selection and color-coded results with detailed logs. Typical uses: newsrooms, forensics, and media verification.",
-    "tech": ["Python 3.13","Tkinter","CustomTkinter","PyCryptodome (RSA, AES)","hashlib (SHA-256)","PyAudio","wave","socket (TCP/IP)"],
+    "tech": [
+      "Python 3.13",
+      "Tkinter",
+      "CustomTkinter",
+      "PyCryptodome (RSA, AES)",
+      "hashlib (SHA-256)",
+      "PyAudio",
+      "wave",
+      "socket (TCP/IP)"
+    ],
     "repo": "https://github.com/nilufereksi/SHA256-ile-sifreleme-ve-dogrulama",
     "demo": "",
     "images": [
@@ -22,10 +31,17 @@
     "tagline": "Audio processing utilities and experiments",
     "short": "A collection of audio/signal-processing scripts for feature extraction, filtering, and visualization.",
     "description": "Role: Author.\n\nWhat I built: A collection of audio/signal-processing scripts and experiments for feature extraction, filtering, and visualization.\n\nImpact / notes: Useful as a learning toolbox for audio analysis and for prototyping signal-processing ideas.",
-    "tech": ["Python","librosa","NumPy","matplotlib"],
+    "tech": [
+      "Python",
+      "librosa",
+      "NumPy",
+      "matplotlib"
+    ],
     "repo": "https://github.com/nilufereksi/ses-isleme",
     "demo": "",
-    "images": [],
+    "images": [
+      "assets/images/ses-isleme-thumb.svg"
+    ],
     "featured": false
   },
   {
@@ -34,10 +50,16 @@
     "tagline": "Database schema and sample data for TinyHouse-style app",
     "short": "Database schema and sample dataset with scripts for creating and querying the dataset.",
     "description": "Role: Author.\n\nWhat I built: Database schema and sample data for a TinyHouse-style app, with scripts for creating and querying the dataset.\n\nImpact / notes: Focused on data modeling and practical examples for storage and retrieval patterns.",
-    "tech": ["SQL","SQLite","Python"],
+    "tech": [
+      "SQL",
+      "SQLite",
+      "Python"
+    ],
     "repo": "https://github.com/nilufereksi/tinyhouse_db",
     "demo": "",
-    "images": [],
+    "images": [
+      "assets/images/tinyhouse-db-thumb.svg"
+    ],
     "featured": false
   },
   {
@@ -46,10 +68,14 @@
     "tagline": "Lightweight port scanning utility for discovering open TCP/UDP ports",
     "short": "A lightweight port scanning utility for discovering open TCP/UDP ports on target hosts.",
     "description": "Role: Author.\n\nWhat I built: A lightweight port scanning utility for discovering open TCP/UDP ports on target hosts.\n\nImpact / notes: Good example of practical networking tooling, concurrency patterns, and low-level I/O handling.",
-    "tech": ["Go"],
+    "tech": [
+      "Go"
+    ],
     "repo": "https://github.com/nilufereksi/port-tarayici",
     "demo": "",
-    "images": [],
+    "images": [
+      "assets/images/port-tarayici-thumb.svg"
+    ],
     "featured": false
   },
   {
@@ -58,10 +84,16 @@
     "tagline": "Predictive demo modeling motor behavior",
     "short": "A predictive demo that models motor behavior using a small dataset and a reproducible pipeline.",
     "description": "Role: Author.\n\nWhat I built: A predictive demo that models motor behavior (e.g., failure prediction or performance forecasting) using a small dataset and a reproducible pipeline.\n\nImpact / notes: Demonstrates applied modeling, evaluation, and model-serving considerations in a compact project.",
-    "tech": ["Python","scikit-learn","TensorFlow"],
+    "tech": [
+      "Python",
+      "scikit-learn",
+      "TensorFlow"
+    ],
     "repo": "https://github.com/nilufereksi/motor-tahmin-uygulamasi",
     "demo": "",
-    "images": [],
+    "images": [
+      "assets/images/motor-tahmin-thumb.svg"
+    ],
     "featured": false
   }
 ]

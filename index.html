@@ -40,12 +40,17 @@
 
     <!-- Projects: interactive grid rendered from assets/data/projects.json -->
     <section id="projects" class="card">
-      <h3>Projects</h3>
-      <div class="project-filters" aria-hidden="false">
-        <button data-filter="all" class="filter active">All</button>
-        <button data-filter="Python" class="filter">Python</button>
-        <button data-filter="Tkinter" class="filter">Tkinter</button>
-        <button data-filter="Cryptography" class="filter">Cryptography</button>
+      <div class="projects-head">
+        <h3>Projects</h3>
+        <div class="project-controls">
+          <input id="project-search" type="search" placeholder="Search projects or tech (e.g. Python)" aria-label="Search projects" />
+          <div class="project-filters" aria-hidden="false">
+            <button data-filter="all" class="filter active">All</button>
+            <button data-filter="Python" class="filter">Python</button>
+            <button data-filter="Tkinter" class="filter">Tkinter</button>
+            <button data-filter="Cryptography" class="filter">Cryptography</button>
+          </div>
+        </div>
       </div>
 
       <div id="projects-grid" class="grid" aria-live="polite">
@@ -86,7 +91,7 @@
       <small>© <span id="year"></span> Nilüfer Ekşinar — Built with GitHub Pages</small>
     </div>
   </footer>
-  
+
   <script src="assets/js/ux.js" defer></script>
   <script src="assets/js/main.js" defer></script>
   <script>

@@ -15,5 +15,53 @@
       "assets/images/ses doğrulama ekranı.png"
     ],
     "featured": true
+  },
+  {
+    "id": "ses-isleme",
+    "title": "ses-isleme — Audio processing utilities and experiments",
+    "tagline": "Audio processing utilities and experiments",
+    "short": "A collection of audio/signal-processing scripts for feature extraction, filtering, and visualization.",
+    "description": "Role: Author.\n\nWhat I built: A collection of audio/signal-processing scripts and experiments for feature extraction, filtering, and visualization.\n\nImpact / notes: Useful as a learning toolbox for audio analysis and for prototyping signal-processing ideas.",
+    "tech": ["Python","librosa","NumPy","matplotlib"],
+    "repo": "https://github.com/nilufereksi/ses-isleme",
+    "demo": "",
+    "images": [],
+    "featured": false
+  },
+  {
+    "id": "tinyhouse-db",
+    "title": "tinyhouse_db — TinyHouse database / data model work",
+    "tagline": "Database schema and sample data for TinyHouse-style app",
+    "short": "Database schema and sample dataset with scripts for creating and querying the dataset.",
+    "description": "Role: Author.\n\nWhat I built: Database schema and sample data for a TinyHouse-style app, with scripts for creating and querying the dataset.\n\nImpact / notes: Focused on data modeling and practical examples for storage and retrieval patterns.",
+    "tech": ["SQL","SQLite","Python"],
+    "repo": "https://github.com/nilufereksi/tinyhouse_db",
+    "demo": "",
+    "images": [],
+    "featured": false
+  },
+  {
+    "id": "port-tarayici",
+    "title": "port-tarayici — Port scanner / networking tool",
+    "tagline": "Lightweight port scanning utility for discovering open TCP/UDP ports",
+    "short": "A lightweight port scanning utility for discovering open TCP/UDP ports on target hosts.",
+    "description": "Role: Author.\n\nWhat I built: A lightweight port scanning utility for discovering open TCP/UDP ports on target hosts.\n\nImpact / notes: Good example of practical networking tooling, concurrency patterns, and low-level I/O handling.",
+    "tech": ["Go"],
+    "repo": "https://github.com/nilufereksi/port-tarayici",
+    "demo": "",
+    "images": [],
+    "featured": false
+  },
+  {
+    "id": "motor-tahmin-uygulamasi",
+    "title": "motor-tahmin-uygulamasi — Motor prediction application (demo)",
+    "tagline": "Predictive demo modeling motor behavior",
+    "short": "A predictive demo that models motor behavior using a small dataset and a reproducible pipeline.",
+    "description": "Role: Author.\n\nWhat I built: A predictive demo that models motor behavior (e.g., failure prediction or performance forecasting) using a small dataset and a reproducible pipeline.\n\nImpact / notes: Demonstrates applied modeling, evaluation, and model-serving considerations in a compact project.",
+    "tech": ["Python","scikit-learn","TensorFlow"],
+    "repo": "https://github.com/nilufereksi/motor-tahmin-uygulamasi",
+    "demo": "",
+    "images": [],
+    "featured": false
   }
 ]

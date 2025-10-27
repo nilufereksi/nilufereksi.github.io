@@ -5,13 +5,17 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Nilüfer Ekşinar — Portfolio</title>
   <meta name="description" content="Portfolio of Nilüfer Ekşinar — projects, skills and contact." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles2.css" />
   <link rel="icon" href="assets/favicon.ico" />
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <h1 class="logo">Nilüfer Ekşinar</h1>
+    <div class="container header-inner">
+      <div class="brand">
+        <h1 class="logo">Nilüfer Ekşinar</h1>
+        <p class="tagline">Full‑stack developer — signal processing, security &amp; tooling</p>
+      </div>
       <nav class="nav">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
@@ -21,40 +25,40 @@
   </header>
 
   <main class="container">
-    <section id="hero" class="hero">
-      <h2>Hi — I'm Nilüfer Ekşinar</h2>
-      <p>Developer • Designer • Problem solver.</p>
-      <p><a class="cta" href="#projects">See my work</a></p>
+    <section id="hero" class="hero card">
+      <div class="hero-grid">
+        <div class="hero-left">
+          <img class="profile-photo" src="assets/images/profile-placeholder.svg" alt="Nilüfer Ekşinar" width="160" height="160" />
+        </div>
+        <div class="hero-right">
+          <h2 class="hero-title">Hi — I'm <strong>Nilüfer Ekşinar</strong></h2>
+          <p class="hero-lead">I deliver production‑ready tools and demonstrators across signal processing, security utilities, data modeling, networking tooling, and predictive analytics.</p>
+          <p class="hero-cta"><a class="cta" href="#projects">See my work</a></p>
+          <div class="hero-skills" aria-hidden="true">
+            <span>Python</span><span>Signal Processing</span><span>Security</span><span>Databases</span><span>ML</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="about" class="card">
+    <section id="about" class="card about-card">
       <h3>About</h3>
-
-      <p class="lead">
-        I am a full‑stack developer who delivers production‑ready tools and demonstrators. My work spans signal processing, security utilities, data modeling, networking tooling, and predictive analytics; I prioritize maintainable code, thorough documentation, and reproducible deployment workflows.
-      </p>
+      <p class="lead">I am a full‑stack developer who delivers production‑ready tools and demonstrators. My work spans signal processing, security utilities, data modeling, networking tooling, and predictive analytics; I prioritize maintainable code, thorough documentation, and reproducible deployment workflows.</p>
 
       <h4>What my projects say about me</h4>
-      <p>
-        My repositories reflect a pragmatic, results‑driven approach: focused prototypes, reusable utilities, and operational tooling applied across multiple domains.
-        I own projects end‑to‑end — from requirements and algorithm design to implementation, testing, and deployment.
-        Together they demonstrate an emphasis on measurable impact, reliability in production contexts, and continuous improvement through iteration and documentation.
-      </p>
+      <p>My repositories reflect a pragmatic, results‑driven approach: focused prototypes, reusable utilities, and operational tooling applied across multiple domains. I own projects end‑to‑end — from requirements and algorithm design to implementation, testing, and deployment. Together they demonstrate an emphasis on measurable impact, reliability in production contexts, and continuous improvement through iteration and documentation.</p>
 
       <h4>Skills / stack</h4>
-      <p>
-        Python (NumPy, SciPy, librosa, pandas), Machine learning (scikit‑learn, TensorFlow/Keras), JavaScript/TypeScript (React), Databases (PostgreSQL, SQLite, SQLAlchemy), Security &amp; cryptography (SHA‑256, OpenSSL, bcrypt), Networking &amp; tooling (sockets, custom port scanners), DevOps &amp; CI/CD (Docker, GitHub Actions), Testing (pytest, Jest), Web deployment (GitHub Pages, static site tooling).
-      </p>
+      <p class="mono">Python (NumPy, SciPy, librosa, pandas) • ML (scikit‑learn, TensorFlow/Keras) • JS/TS (React) • Databases (Postgres, SQLite, SQLAlchemy) • Security (SHA‑256, OpenSSL) • Networking &amp; tooling • DevOps (Docker, GitHub Actions) • Testing (pytest, Jest)</p>
 
-        <h4>Additional experience & tools</h4>
-  <ul>
-    <li>Testing: white‑box and black‑box testing (designing test cases, instrumentation, automated test scripts)</li>
-    <li>Languages: C, Python, JavaScript</li>
-    <li>Platforms &amp; tools: Linux, MySQL, XAMPP, phpMyAdmin, Jupyter Notebook, Streamlit</li>
-  </ul>
+      <h4>Additional experience & tools</h4>
+      <ul class="tools-list">
+        <li>Testing: white‑box &amp; black‑box testing</li>
+        <li>Languages: C, Python, JavaScript</li>
+        <li>Platforms &amp; tools: Linux, MySQL, XAMPP, phpMyAdmin, Jupyter, Streamlit</li>
+      </ul>
     </section>
 
-    <!-- Projects: interactive grid rendered from assets/data/projects.json -->
     <section id="projects" class="card">
       <div class="projects-head">
         <h3>Projects</h3>
@@ -70,18 +74,17 @@
       </div>
 
       <div id="projects-grid" class="grid" aria-live="polite">
-        <!-- Project cards will be rendered here by assets/js/main.js -->
+        <!-- JS injects cards here -->
       </div>
     </section>
 
     <section id="contact" class="card">
       <h3>Contact</h3>
-      <p>Email: <a href="mailto:you@example.com">refulin17353@gmail.com</a></p>
-      <p>Or find me on <a href="https://github.com/nilufereksi" target="_blank" rel="noopener">GitHub</a> · <a href="#" target="_blank" rel="noopener">LinkedIn</a></p>
+      <p>Email: <a href="mailto:you@example.com">you@example.com</a></p>
+      <p>Find me on <a href="https://github.com/nilufereksi" target="_blank" rel="noopener">GitHub</a> · <a href="#" target="_blank" rel="noopener">LinkedIn</a></p>
     </section>
   </main>
 
-  <!-- Project modal -->
   <div id="project-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
     <div class="modal-backdrop" data-close></div>
     <div class="modal-content" role="document">
@@ -103,15 +106,13 @@
   </div>
 
   <footer class="site-footer">
-    <div class="container">
+    <div class="container footer-inner">
       <small>© <span id="year"></span> Nilüfer Ekşinar — Built with GitHub Pages</small>
     </div>
   </footer>
 
   <script src="assets/js/ux.js" defer></script>
   <script src="assets/js/main.js" defer></script>
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

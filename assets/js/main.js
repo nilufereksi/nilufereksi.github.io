@@ -79,12 +79,25 @@ document.addEventListener('DOMContentLoaded', () => {
     if (openBtn) openBtn.addEventListener('click', () => openModal(p));
 
     // observe thumbnail for lazy loading (only if an <img> exists)
-    const img = card.querySelector('.thumb-img');
-    if (io && img) {
-      io.observe(img);
-    } else if (img && img.dataset && img.dataset.src) {
-      img.src = img.dataset.src;
+    // Inside createCard (where you create or select the thumb <img>), add this:
+const img = card.querySelector('.thumb-img');
+if (img) {
+  // If the image fails to load, hide it and show an empty placeholder element
+  img.addEventListener('error', () => {
+    img.style.display = 'none';
+    // create or reveal a placeholder (ensure no text)
+    let ph = card.querySelector('.thumb-placeholder');
+    if (!ph) {
+      ph = document.createElement('div');
+      ph.className = 'project-thumb thumb-placeholder';
+      ph.setAttribute('aria-hidden', 'true');
+      const thumbParent = img.parentElement || card;
+      thumbParent.insertBefore(ph, img);
+    } else {
+      ph.style.display = '';
     }
+  }, { once: true });
+}
     return card;
   }
 

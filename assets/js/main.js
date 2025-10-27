@@ -42,31 +42,47 @@ document.addEventListener('DOMContentLoaded', () => {
     const card = document.createElement('article');
     card.className = 'project animate-card';
     card.setAttribute('data-id', p.id);
-    card.setAttribute('data-title', p.title.toLowerCase());
-    card.setAttribute('data-tech', p.tech.join(' ').toLowerCase());
-    card.innerHTML = `
-      <button class="project-thumb" aria-label="Open ${p.title}" data-open>
-        <img loading="lazy" data-src="${p.images[0]}" alt="${p.title} thumbnail" class="thumb-img" />
-      </button>
+    card.setAttribute('data-title', (p.title || '').toLowerCase());
+    card.setAttribute('data-tech', (p.tech || []).join(' ').toLowerCase());
+
+    // If project has at least one image, render thumbnail button + img
+    let mediaHtml = '';
+    if (p.images && Array.isArray(p.images) && p.images.length > 0 && p.images[0]) {
+      const src = p.images[0];
+      mediaHtml = `
+        <button class="project-thumb" aria-label="Open ${p.title}" data-open>
+          <img loading="lazy" data-src="${src}" alt="${p.title} thumbnail" class="thumb-img" />
+        </button>`;
+    } else {
+      // render an empty placeholder div (no text) so card layout remains consistent
+      mediaHtml = `
+        <div class="project-thumb thumb-placeholder" aria-hidden="true"></div>`;
+    }
+
+    card.innerHTML = `${mediaHtml}
       <div class="project-body">
         <h4>${p.title}</h4>
-        <p class="tagline">${p.tagline}</p>
-        <p class="short">${p.short}</p>
+        <p class="tagline">${p.tagline || ''}</p>
+        <p class="short">${p.short || ''}</p>
         <div class="project-footer">
-          <div class="tech">${renderTechList(p.tech)}</div>
+          <div class="tech">${renderTechList(p.tech || [])}</div>
           <div class="links">
-            <a href="${p.repo}" target="_blank" rel="noopener" class="small">Repo</a>
+            <a href="${p.repo || '#'}" target="_blank" rel="noopener" class="small">Repo</a>
             ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener" class="small">Demo</a>` : ''}
           </div>
         </div>
       </div>
     `;
-    card.querySelector('[data-open]').addEventListener('click', () => openModal(p));
-    // observe thumbnail for lazy loading
+
+    // attach open handler only if there's an open button
+    const openBtn = card.querySelector('[data-open]');
+    if (openBtn) openBtn.addEventListener('click', () => openModal(p));
+
+    // observe thumbnail for lazy loading (only if an <img> exists)
     const img = card.querySelector('.thumb-img');
     if (io && img) {
       io.observe(img);
-    } else if (img.dataset && img.dataset.src) {
+    } else if (img && img.dataset && img.dataset.src) {
       img.src = img.dataset.src;
     }
     return card;
@@ -77,19 +93,19 @@ document.addEventListener('DOMContentLoaded', () => {
     modal.setAttribute('aria-hidden', 'false');
     document.body.classList.add('modal-open');
     modal.querySelector('#modal-title').textContent = p.title;
-    modal.querySelector('#modal-tagline').textContent = p.tagline;
-    modal.querySelector('#modal-desc').textContent = p.description;
-    modal.querySelector('#modal-tech').innerHTML = p.tech.map(t => `<span class="tag">${t}</span>`).join(' ');
+    modal.querySelector('#modal-tagline').textContent = p.tagline || '';
+    modal.querySelector('#modal-desc').textContent = p.description || '';
+    modal.querySelector('#modal-tech').innerHTML = (p.tech || []).map(t => `<span class="tag">${t}</span>`).join(' ');
     const repoLink = modal.querySelector('#modal-repo'); repoLink.href = p.repo || '#';
     const demoLink = modal.querySelector('#modal-demo'); demoLink.href = p.demo || '#';
     carouselTrack.innerHTML = '';
 
-    // preload a few images
-    p.images.forEach((src, i) => {
+    // preload images into carousel if present
+    (p.images || []).forEach((src, i) => {
+      if (!src) return;
       const img = document.createElement('img');
       img.alt = `${p.title} screenshot ${i+1}`;
       img.dataset.idx = i;
-      // use data-src to lazy-load images into carousel but set first one immediately
       if (i === 0) img.src = src;
       else img.dataset.src = src;
       carouselTrack.appendChild(img);
@@ -100,20 +116,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // attach swipe
     if (window.ux && window.ux.attachSwipe) {
-      // detach previous if any
       if (modal._detachSwipe) modal._detachSwipe();
-      modal._detachSwipe = window.ux.attachSwipe(carouselTrack, {
-        onLeft: () => goNext(),
-        onRight: () => goPrev(),
-        threshold: 30
-      });
+      modal._detachSwipe = window.ux.attachSwipe(carouselTrack, { onLeft: () => goNext(), onRight: () => goPrev(), threshold: 30 });
     }
   }
 
   function closeModal() {
     modal.setAttribute('aria-hidden', 'true');
     document.body.classList.remove('modal-open');
-    // detach swipe
     if (modal._detachSwipe) { modal._detachSwipe(); modal._detachSwipe = null; }
   }
 
@@ -122,7 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (imgs.length === 0) return;
     imgs.forEach((img, idx) => {
       if (idx === currentIndex) {
-        // ensure src loaded
         if (img.dataset.src) img.src = img.dataset.src;
         img.style.display = 'block';
         img.classList.add('active-slide');
@@ -132,15 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  function goPrev() {
-    currentIndex = Math.max(0, currentIndex - 1);
-    updateCarousel();
-  }
-  function goNext() {
-    const imgs = carouselTrack.children.length;
-    currentIndex = Math.min(imgs - 1, currentIndex + 1);
-    updateCarousel();
-  }
+  function goPrev() { currentIndex = Math.max(0, currentIndex - 1); updateCarousel(); }
+  function goNext() { const imgs = carouselTrack.children.length; currentIndex = Math.min(imgs - 1, currentIndex + 1); updateCarousel(); }
 
   // close handlers
   modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
@@ -171,47 +173,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const matchesSearch = !term || title.includes(term) || tech.includes(term);
       const matchesFilter = filter === 'all' || tech.includes(filter);
       card.style.display = (matchesSearch && matchesFilter) ? '' : 'none';
-      // add small entrance animation when shown
-      if (card.style.display === '') {
-        card.classList.add('entrance');
-        setTimeout(() => card.classList.remove('entrance'), 700);
-      }
+      if (card.style.display === '') { card.classList.add('entrance'); setTimeout(() => card.classList.remove('entrance'), 700); }
     });
   }
 
-  // debounce search using ux.debounce if available
-  const debounced = (window.ux && window.ux.debounce) ? window.ux.debounce(applyFilters, 180) : (function(fn){
-    let t; return function(){ clearTimeout(t); t = setTimeout(fn, 180); };
-  })(applyFilters);
-
+  const debounced = (window.ux && window.ux.debounce) ? window.ux.debounce(applyFilters, 180) : (function(fn){ let t; return function(){ clearTimeout(t); t = setTimeout(fn, 180); }; })(applyFilters);
   if (searchInput) searchInput.addEventListener('input', debounced);
 
-  // filter buttons
-  filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      // add animated active indicator
-      btn.classList.add('bump');
-      setTimeout(() => btn.classList.remove('bump'), 260);
-      applyFilters();
-    });
-  });
+  filterButtons.forEach(btn => { btn.addEventListener('click', () => { filterButtons.forEach(b => b.classList.remove('active')); btn.classList.add('active'); btn.classList.add('bump'); setTimeout(() => btn.classList.remove('bump'), 260); applyFilters(); }); });
 
   // load and render
   fetchProjects().then(data => {
     projects = data;
     grid.innerHTML = '';
     projects.forEach(p => grid.appendChild(createCard(p)));
-    // show featured first
     const featuredIndex = projects.findIndex(p => p.featured);
-    if (featuredIndex > -1) {
-      const first = grid.children[featuredIndex];
-      if (first) grid.insertBefore(first, grid.firstChild);
-    }
-  }).catch(err => {
-    grid.innerHTML = '<p class="muted">Could not load projects (check assets/data/projects.json)</p>';
-    console.error(err);
-  });
-
+    if (featuredIndex > -1) { const first = grid.children[featuredIndex]; if (first) grid.insertBefore(first, grid.firstChild); }
+  }).catch(err => { grid.innerHTML = '<p class="muted">Could not load projects (check assets/data/projects.json)</p>'; console.error(err); });
 });
